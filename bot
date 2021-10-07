@@ -2,14 +2,14 @@ a = ["Help me", "I'm here", "You lose"]
 key = "123"
 k = 1
 choise = int(input("Введите индекс: "))
-password = input("ведите пароль: ")
+password = input("Ведите пароль: ")
 
 
 while password != key:
     if k == 3:
         break
     else:
-        password = input("ведите пароль: ")
+        password = input("Ведите пароль: ")
         k += 1
 if password == key:
     if choise == 1:
