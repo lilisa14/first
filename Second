@@ -1,1 +1,45 @@
+dogs = {"борзая": 1, "бульдог": 2, "доберман": 3, "долматин": 4, "хаски": 5, "корги": 6, "мопс": 7, "овчарка": 8, "спаниель": 9, "терьер": 10}
+import cv2
+img = cv2.imread('imag/borzaya.jpg')
+img2 = cv2.imread('imag/buldog.jpg')
+img3 = cv2.imread('imag/doberman.jpg')
+img4 = cv2.imread('imag/dolmatin.jpg')
+img5 = cv2.imread('imag/husky.jpg')
+img6 = cv2.imread('imag/korgi.jpg')
+img7 = cv2.imread('imag/mops.jpg')
+img8 = cv2.imread('imag/ovcharka.jpg')
+img9 = cv2.imread('imag/spaniel.jpg')
+img10 = cv2.imread('imag/terier.jpg')
 
+
+choise = input("Введите породу собаки, изображение которой хотите увидеть: ")
+if dogs[choise] == 1:
+    cv2.imshow('Borzaya', img)
+    cv2.waitKey(0)
+elif dogs[choise] == 2:
+    cv2.imshow('Buldog', img2)
+    cv2.waitKey(0)
+elif dogs[choise] == 3:
+    cv2.imshow('Doberman', img3)
+    cv2.waitKey(0)
+elif dogs[choise] == 4:
+    cv2.imshow('Dolmatin', img4)
+    cv2.waitKey(0)
+elif dogs[choise] == 5:
+    cv2.imshow('Husky', img5)
+    cv2.waitKey(0)
+elif dogs[choise] == 6:
+    cv2.imshow('Korgi', img6)
+    cv2.waitKey(0)
+elif dogs[choise] == 7:
+    cv2.imshow('Mops', img7)
+    cv2.waitKey(0)
+elif dogs[choise] == 8:
+    cv2.imshow('Ovcharka', img8)
+    cv2.waitKey(0)
+elif dogs[choise] == 9:
+    cv2.imshow('Spaniel', img9)
+    cv2.waitKey(0)
+elif dogs[choise] == 10:
+    cv2.imshow('Terier', img10)
+    cv2.waitKey(0)
