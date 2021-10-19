@@ -1,7 +1,8 @@
 dogs = {"борзая": 1, "бульдог": 2, "доберман": 3, "долматин": 4, "хаски": 5, "корги": 6, "мопс": 7, "овчарка": 8, "спаниель": 9, "терьер": 10}
 import cv2
-img = cv2.imread('imag/borzaya.jpg')
-img2 = cv2.imread('imag/buldog.jpg')
+
+img = cv2.imread('imag/borzaya.jpeg')
+img2 = cv2.imread('imag/buldog.jpeg')
 img3 = cv2.imread('imag/doberman.jpg')
 img4 = cv2.imread('imag/dolmatin.jpg')
 img5 = cv2.imread('imag/husky.jpg')
@@ -9,7 +10,7 @@ img6 = cv2.imread('imag/korgi.jpg')
 img7 = cv2.imread('imag/mops.jpg')
 img8 = cv2.imread('imag/ovcharka.jpg')
 img9 = cv2.imread('imag/spaniel.jpg')
-img10 = cv2.imread('imag/terier.jpg')
+img10 = cv2.imread('imag/terier.jpeg')
 
 
 choise = input("Введите породу собаки, изображение которой хотите увидеть: ")
@@ -43,3 +44,16 @@ elif dogs[choise] == 9:
 elif dogs[choise] == 10:
     cv2.imshow('Terier', img10)
     cv2.waitKey(0)
+
+
+print('Хотите ли вы увидеть кое-что?')
+text = input('"да" или "нет"')
+if text == "да":
+    vid = cv2.VideoCapture('imag/TV.mp4')
+
+    while True:
+        success, img = vid.read()
+        cv2.imshow('TV', img)
+
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
