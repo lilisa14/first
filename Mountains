@@ -1,0 +1,37 @@
+a = open('1.txt', 'r')
+b = a.read()
+
+x = ['']
+k = 0
+
+for i in range(len(b)):
+    if b[i] != ' ':
+        x[k] += b[i]
+    else:
+        k += 1
+        x.append('')
+for j in range(len(x)):
+    x[j] = int(x[j])
+
+s = 0
+p = 1
+
+sl = 0
+pl = x[0]
+
+max = x[0]
+
+for f in range(1, len(x)):
+    if x[f] < max:
+        s += 1
+        sl += (max - x[f])
+        max = x[f]
+    else:
+        p += 1
+        pl += (x[f] - max)
+        max = x[f]
+
+print("Спусков: ", s, "(", sl, " км)")
+print("Подъёмов: ", p, "(", pl, " км)")
+
+a.close()
