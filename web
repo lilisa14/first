@@ -1,0 +1,10 @@
+cap = cv2.VideoCapture(0)
+cap.set(3, 1000)
+cap.set(4, 1000)
+
+while True:
+    success, img = cap.read()
+    cv2.imshow("Result", img)
+
+    if cv2.waitKey(10) & 0xFF == ord('q'):
+        break
