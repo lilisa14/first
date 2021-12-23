@@ -1,0 +1,79 @@
+import cv2
+import mediapipe as mp
+import pyttsx3 as pt
+
+
+tts = pt.init()
+
+mp_drawing = mp.solutions.drawing_utils
+mp_drawing_styles = mp.solutions.drawing_styles
+mp_hands = mp.solutions.hands
+
+cap = cv2.VideoCapture(0)
+
+with mp_hands.Hands(
+        model_complexity=0,
+        min_detection_confidence=0.5,
+        min_tracking_confidence=0.5) as hands:
+  while True:
+    success, image = cap.read()
+
+    image.flags.writeable = False
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    results = hands.process(image)
+
+    image.flags.writeable = True
+    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+
+    if results.multi_hand_landmarks:
+        for hand_landmarks in results.multi_hand_landmarks:
+            mp_drawing.draw_landmarks(image, hand_landmarks, mp_hands.HAND_CONNECTIONS,
+            mp_drawing_styles.get_default_hand_landmarks_style(),
+            mp_drawing_styles.get_default_hand_connections_style())
+
+        cv2.imshow('x', cv2.flip(image, 1))
+
+    hand = cv2.CascadeClassifier('hand.xml')
+
+    result = hand.detectMultiScale(image, scaleFactor=2, minNeighbors=5)
+    print(result)
+
+    o = cv2.CascadeClassifier('ok.xml')
+    ok = o.detectMultiScale(image, scaleFactor=2, minNeighbors=5)
+
+    h = cv2.CascadeClassifier('hi.xml')
+    hi = o.detectMultiScale(image, scaleFactor=2, minNeighbors=5)
+    
+    b = cv2.CascadeClassifier('bad.xml')
+    bad = o.detectMultiScale(image, scaleFactor=2, minNeighbors=5)
+    
+    by = cv2.CascadeClassifier('bye.xml')
+    bye = o.detectMultiScale(image, scaleFactor=2, minNeighbors=5)
+    
+    n = cv2.CascadeClassifier('no.xml')
+    no = o.detectMultiScale(image, scaleFactor=2, minNeighbors=5)
+
+
+    if cv2.waitKey(5) & 0xFF == ord(' '):
+        break
+
+    if result == hi:
+        tts.say('Привет. Надеюсь, что вы в хорошем настроении')
+        tts.runAndWait()
+
+    if result == ok:
+        tts.say('Просто прекрасно')
+        tts.runAndWait()
+
+    if result == bad:
+        tts.say('Я могу вам помочь?')
+        tts.runAndWait()
+
+    if result == no:
+        tts.say('Не расстраивайтесь, всё наладится')
+        tts.runAndWait()
+
+    if result == bye:
+        tts.say('До свидания')
+        tts.runAndWait()
+        break
